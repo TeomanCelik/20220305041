@@ -1,0 +1,38 @@
+-- Table 20220305041.Transactions
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS 20220305041.Transactions ;
+
+CREATE TABLE IF NOT EXISTS 20220305041.Transactions (
+  TransactionsID INT NOT NULL AUTO_INCREMENT,
+  UserID INT NOT NULL,
+  TransactionsType NVARCHAR(50) NOT NULL,
+  Amount NVARCHAR(50) NULL,
+  TransactionsDate DATETIME NOT NULL,
+  PRIMARY KEY (TransactionsID),
+  INDEX UserID_idx (UserID ASC) VISIBLE,
+  CONSTRAINT UserID
+    FOREIGN KEY (UserID)
+    REFERENCES 20220305041.Users (UserID)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table 20220305041.Users
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS 20220305041.Users ;
+
+CREATE TABLE IF NOT EXISTS 20220305041.Users (
+  UserID INT NOT NULL AUTO_INCREMENT,
+  Name NVARCHAR(50) NOT NULL,
+  Surname NVARCHAR(50) NOT NULL,
+  PIN INT NOT NULL,
+  Balance FLOAT NOT NULL,
+  PRIMARY KEY (UserID))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
